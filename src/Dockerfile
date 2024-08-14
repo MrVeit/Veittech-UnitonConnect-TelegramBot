@@ -16,5 +16,5 @@ COPY . .
 # Open the port on which the application will run
 EXPOSE 2000
 
-# Define a command to start your API server
-CMD ["node", "server.js"]
+# Define a command to start
+CMD ["npm", "start"]
