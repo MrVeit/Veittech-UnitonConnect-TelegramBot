@@ -1,30 +1,36 @@
-IMAGE_NAME = unigram-payment_telegram-bot
-CONTAINER_NAME = unigram-payment_telegram-bot
-PORT = 5000
+include .env
+export $(shell sed 's/=.*//' .env)
+
+APP_NAME = uniton-connect_telegram-bot
+
+DOCKER_IMAGE = $(APP_NAME):$(VERSION)
+DOCKER_CONTAINER = $(APP_NAME)_container
+
+VERSION = 0.2.8
 
 build:
-	docker build -t $(IMAGE_NAME) .
+        docker build -t $(DOCKER_IMAGE) .
 
 run: build
-	docker run -d -p $(PORT):$(PORT) --name $(CONTAINER_NAME) $(IMAGE_NAME)
+        docker run -d --env-file .env -p $(PORT):$(PORT) --name $(DOCKER_CONTAINER) $(DOCKER_IMAGE)
 
 stop:
-	docker stop $(CONTAINER_NAME) || true
+        docker stop $(DOCKER_CONTAINER) || true
+        docker rm $(DOCKER_CONTAINER) || true
 
 restart: clean run
 
 clean: stop
-	docker rm $(CONTAINER_NAME) || true
-	docker rmi $(IMAGE_NAME)
+        docker rmi $(DOCKER_IMAGE)
 
 logs:
-	docker logs -f $(CONTAINER_NAME)
+        docker logs -f $(DOCKER_CONTAINER)
 
 help:
-	@echo "Usage:"
-	@echo " make build - Build the Docker image"
-	@echo " make run - Start the Docker container"
-	@echo " make stop - Stopping the Docker container."
-	@echo " make restart - Restart the Docker container" @echo " make restart - Restart the Docker container"
-	@echo " make logs - View the Docker container logs"
-	@echo " make clean - Deleting the Docker image"
+        @echo "Usage:"
+        @echo " make build - Build the Docker image"
+        @echo " make run - Start the Docker container"
+        @echo " make stop - Stopping the Docker container."
+        @echo " make restart - Restart the Docker container" @echo " make restart - Restart the Docker container"
+        @echo " make logs - View the Docker container logs"
+        @echo " make clean - Deleting the Docker image"
