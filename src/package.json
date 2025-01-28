@@ -1,11 +1,11 @@
 {
   "name": "uniton-connect_telegram-bot",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "description": "",
-  "main": "main.js",
+  "main": "bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node main.js"
+    "start": "node bot.js"
   },
   "author": "MrVeit",
   "license": "ISC",
