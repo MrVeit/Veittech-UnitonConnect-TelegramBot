@@ -5,10 +5,10 @@ HELP_FORMAT = "\033[36m%-20s\033[0m %s\n"
 
 APP_NAME = uniton-connect_telegram-bot
 
+VERSION = 0.3.0
+
 DOCKER_IMAGE = $(APP_NAME):$(VERSION)
 DOCKER_CONTAINER = $(APP_NAME)_container
-
-VERSION = 0.3.0
 
 .PHONY: help build run run-detached stop restart clear logs logs-realtime
 
